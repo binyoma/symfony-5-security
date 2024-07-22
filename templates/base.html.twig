@@ -36,8 +36,25 @@
                             
                         {% endif %}
                     </ul>
-                    {% if is_granted('ROLE_USER') %}
-                        <a class="nav-link text-black-50" href="{{ path('app_logout')}}">Log Out</a>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="dropdown">
+                            <button
+                                class="dropdown-toggle btn"
+                                type="button"
+                                id="user-dropdown"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <img
+                                    src="{{ app.user.avatarUri}}"
+                                    alt="{{ app.user.displayName}}">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_logout')}}">Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
                     {% else %}
                      <a class="nav-link text-black-50" href="{{ path('app_login')}}">Log In</a>
 
