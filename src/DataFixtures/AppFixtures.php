@@ -45,7 +45,14 @@ class AppFixtures extends Fixture
             ];
         })->needsApproval()->many(20)->create();
 
-        UserFactory::createOne(['email'=>'admin@exemple.com']);
+        UserFactory::createOne([
+            'email'=>'admin@exemple.com',
+            'roles'=>['ROLE_ADMIN']  
+        ]);
+        
+        UserFactory::createOne([
+            'email'=>'user@exemple.com'
+        ]);
         UserFactory::createMany(10);
 
         $manager->flush();
