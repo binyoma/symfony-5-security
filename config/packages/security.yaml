@@ -5,6 +5,10 @@ security:
     hide_user_not_found: false
 
 
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_COMMENT_ADMIN, ROLE_USER_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+
 
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -36,6 +40,8 @@ security:
                  enable_csrf: true
                  
             logout: true
+
+            switch_user: true 
 
 
             remember_me:
