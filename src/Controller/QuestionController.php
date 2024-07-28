@@ -54,6 +54,7 @@ class QuestionController extends AbstractController
         return new Response('Sounds like a GREAT feature for V2!');
     }
 
+    
     /**
      * @Route("/questions/{slug}", name="app_question_show")
      */
@@ -67,6 +68,20 @@ class QuestionController extends AbstractController
             'question' => $question,
         ]);
     }
+
+    /**
+     * @Route("/questions/edit/{slug}", name="app_question_edit")
+     */
+    public function edit(Question $question)
+    {
+        $this->denyAccessUnlessGranted('EDIT', $question);
+       
+        return $this->render('question/edit.html.twig', [
+            'question' => $question,
+        ]);
+    }
+
+
 
     /**
      * @Route("/questions/{slug}/vote", name="app_question_vote", methods="POST")
